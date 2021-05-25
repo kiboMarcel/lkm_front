@@ -1,19 +1,15 @@
 <template>
-  <body>
-    <nav-bar></nav-bar>
-    <router-view></router-view>
-    <the-footer></the-footer>
+  <body> 
+    <router-view name="navbar"></router-view> 
+    <router-view ></router-view>
+    <router-view name="footer" ></router-view>
   </body>
 </template>
 
 <script>
-import NavBar from "./components/layouts/NavBar";
-import TheFooter from "./components/layouts/Footer";
 
 export default {
   components: {
-    NavBar,
-    TheFooter,
   },
 };
 </script>

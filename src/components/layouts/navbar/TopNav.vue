@@ -18,8 +18,32 @@
           <i class="fas fa-shopping-cart"></i>
           <span>{{ $store.state.cartStore.cartCount }}</span>
         </div>
-        <div class="login dropdown">
-          <button class="btn  dropdown-toggle" type="button">
+       <!--  <div class="dropdown">
+          <button
+            class="btn  dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+          <i class="fas fa-user"></i>
+             <span class="caret">
+              {{
+                checkUser ?'  '+$store.state.userStore.userInfo.username : " Account"
+              }}
+            </span>
+          </button>
+          <div class="dropdown-menus" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </div> -->
+        <div class="dropdown">
+          <button class="btn  dropdown-toggle" type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown">
             <i class="fas fa-user"></i>
             <span class="caret">
               {{
@@ -36,9 +60,13 @@
             <li><a href="#">other menu</a></li>
             <li><a href="#">other menu</a></li>
             <li><a href="#">other menu</a></li>
-            <li><a href="#">other menu</a></li>
-            <li v-if="checkUser"><a @click.prevent="logout" href="" >Se deconnecter</a></li>
+
+             <div v-if="checkUser" >
+            <li> <router-link to="/profil"> Profil</router-link> </li>
+            <li><a @click.prevent="logout" href="" >Se deconnecter</a></li>
+          </div>
           </ul>
+
         </div>
       </div>
     </div>
@@ -47,7 +75,7 @@
 </template>
 
 <script>
-import BaseModal from "../BaseModal";
+import BaseModal from "../../BaseModal";
 
 export default {
   components: {
@@ -92,9 +120,9 @@ export default {
       this.loginModalIsVisible = false;
     },
 
-    logout(){
-      this.$store.dispatch('userStore/logout')
-    }
+    logout() {
+      this.$store.dispatch("userStore/logout");
+    },
   },
 };
 </script>

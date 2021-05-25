@@ -1,4 +1,5 @@
 import axios from "axios";
+import apiUrl from "../variables";
 
 let userInfo = window.localStorage.getItem("userInfo");
 
@@ -14,7 +15,7 @@ const userStore = {
   actions: {
     async login({ commit }, userinfo) {
       await axios
-        .post("http://127.0.0.1:8000/api/users/login/", {
+        .post(apiUrl+"/api/users/login/", {
           username: userinfo.username,
           password: userinfo.password,
         })
@@ -24,8 +25,6 @@ const userStore = {
           let userInfo = response.data;
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
           commit("auth_success", userInfo);
-
-          
         })
         .catch((err) => {
           let message = err.response.data.detail;
@@ -40,10 +39,9 @@ const userStore = {
       localStorage.removeItem("userInfo");
     },
 
-
     async register({ commit }, userinfo) {
       await axios
-        .post("http://127.0.0.1:8000/api/users/register/", {
+        .post(apiUrl+"/api/users/register/", {
           email: userinfo.email,
           name: userinfo.name,
           password: userinfo.password,
@@ -54,21 +52,49 @@ const userStore = {
           let userInfo = response.data;
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
           commit("auth_success", userInfo);
-
-          
         })
         .catch((err) => {
           let message = err.response.data.detail;
           commit("auth_error", message);
-          localStorage.removeItem("token");
+          //localStorage.removeItem("token");
           //console.log(message);
         });
+    },
+
+    async update({getters}, values) {
+      await axios
+        .put(
+          apiUrl+"/api/users/profile/update/",
+          {
+            name: values.username,
+            email: values.email,
+            password: values.password,
+          },
+          {
+            headers: {
+              "content-type": "application/json",
+              Authorization: `Bearer ${getters.getUser.token}`,
+            },
+          }
+        )
+        .then((response) => {
+          console.log(response.data);
+          
+        })
+        .catch((err) => {
+          //let message = err.response.data.detail;
+          console.log(err);
+        });
+       //console.log(context, values)
     },
   },
 
   getters: {
     isAuthenticated: (state) => !!state.token,
     authStatus: (state) => state.status,
+    getUser(state){
+      return state.userInfo
+   }
   },
 
   mutations: {

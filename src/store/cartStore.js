@@ -3,6 +3,7 @@ import apiUrl from '../variables';
 
 let cartItems = window.localStorage.getItem('cartItems');
 let cartCount = window.localStorage.getItem('cartCount');
+//let ShippingAdress = window.localStorage.getItem('ShippingAdress');
 
 
 const cartStore= {
@@ -26,7 +27,13 @@ actions :{
            .catch(error => {
                console.log(error)
            })
-   }
+   },
+
+   saveShippingAddress(context, data){
+       console.log(context)
+    //state.cartItems = JSON.parse(cartitem)
+    localStorage.setItem('Shipping address', JSON.stringify(data))
+},
     
   
 },
@@ -64,6 +71,8 @@ mutations : {
        //state.cartItems = JSON.parse(cartitem)
        localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
    },
+
+  
 
    removeCartItem(state, item){
        let index = state.cartItems.indexOf(item)

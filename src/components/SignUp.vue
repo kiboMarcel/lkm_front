@@ -86,7 +86,7 @@ export default {
       this.$store.dispatch("userStore/register", userInfo);
      
 
-      console.log(userInfo);
+      //console.log(userInfo);
     },
   },
 };
