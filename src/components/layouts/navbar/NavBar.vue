@@ -3,20 +3,16 @@
     <div>
       <TopNav />
     </div>
-    <nav class="navbar navbar-expand-lg costum ">
-      <NavItem />
-    </nav>
+  
   </header>
 </template>
 
 <script>
-import NavItem from "./NavItems.vue";
 
 import TopNav from "./TopNav.vue";
 
 export default {
   components: {
-    NavItem: NavItem,
     TopNav: TopNav,
   },
 
@@ -49,5 +45,12 @@ header{
   top: 0;
   z-index: 100;
 } */
+
+.st{
+  position: sticky;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
 
 </style>

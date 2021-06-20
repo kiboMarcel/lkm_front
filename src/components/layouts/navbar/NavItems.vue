@@ -1,4 +1,6 @@
 <template>
+<div>
+
   <button
     class="navbar-toggler"
     type="button"
@@ -39,6 +41,7 @@
       </li>
     </ul>
   </div>
+</div>
 </template>
 
 <script>

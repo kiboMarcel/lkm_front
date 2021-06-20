@@ -1,7 +1,7 @@
 <template>
   <div class="carousel-section">
     <div class="carousel">
-     <div id="carouselExampleIndicators" class="carousel carousel-c slide" data-ride="carousel">
+     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -9,13 +9,13 @@
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="../assets/images/01.jpg" alt="First slide">
+      <img class="d-block w-100" src="" alt="First slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../assets/images/01.jpg" alt="Second slide">
+      <img class="d-block w-100" src="" alt="Second slide">
     </div>
     <div class="carousel-item">
-      <img class="d-block w-100" src="../assets/images/01.jpg" alt="Third slide">
+      <img class="d-block w-100" src="" alt="Third slide">
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -33,25 +33,21 @@
 
 <script>
 export default {};
-</script> 
+</script>
 
 <style>
-.carousel-section{
-  background-color: #F2F2F2 !important;  
-}
-
-.carousel-c{
+.carousel{
     height: 350px;
     margin:1rem;
     border-radius: 20px;
-    overflow: hidden;
+    background-color:lightblue;
 }
 
 @media (max-width:930px) {
-    .carousel-c{
-    height: 149px;
+    .carousel{
+    height: 250px;
+    background-color:lightblue;
     border-radius: 10px;
-    overflow: hidden;
 }
 }
 </style>

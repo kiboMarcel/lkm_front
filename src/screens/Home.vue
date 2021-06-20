@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-body" >
     <carousel />
     <the-support-area></the-support-area>
     <div class="container-fluid">
@@ -28,7 +28,8 @@ export default {
   background-color: rgb(255, 255, 255);
 }
 
-.container-fluid {
+.container-fluid ,
+.home-body {
   background-color: #F2F2F2; 
 }
 

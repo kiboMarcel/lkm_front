@@ -1,65 +1,91 @@
 <template>
-  <div class="container">
+  <div class="wrap">
     <ul>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>Jeux</h4>
+        </a>
       </li>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>PC</h4>
+        </a>
       </li>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>Menage</h4>
+        </a>
       </li>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>Domestique</h4>
+        </a>
       </li>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>Autre dfd</h4>
+        </a>
       </li>
-      <li>
-        <categorie-feature></categorie-feature>
+      <li class="cat">
+        <a href="">
+          <h4>Autred</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>AutChose</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>AuChose</h4>
+        </a>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import CategorieFeature from "./CategorieFeatures";
-export default {
-  components: {
-    CategorieFeature,
-  },
-};
+export default {};
 </script>
 
 <style scoped>
-.container {
-  margin-top: 3rem;
-  align-items: center;
-  display: none;
+.wrap{
+  background-color: #f2f2f2;
 }
 
-@media screen and (max-width: 960px) {
-  .container {
-      display: block;
-  }
+.cat {
+  background-color: rgb(40, 36, 75);
+  display: inline-block;
+  padding: 15px;
+  margin: 0.5rem;
+  color: white;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+a h4 {
+  margin: 2px 0;
+  font-size: 25px;
+}
 
+ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+@media (max-width: 930px) {
   ul {
-    list-style: none;
-    margin: 0;
     padding: 0;
+    margin: 1rem;
+  }
+  .cat {
+    padding: 2px 8px;
+    margin: 0.2rem 0.2rem;
   }
 
-  li {
-    display: inline-block;
-    width: 25%;
-    margin-top: 10px;
-    align-items: center;
-  }
-
-  span {
-    display: block;
-    text-align: center;
+  a h4 {
+    margin: 2px 0;
+    font-size: 12px;
   }
 }
 </style>

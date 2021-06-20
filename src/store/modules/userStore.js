@@ -1,15 +1,16 @@
 import axios from "axios";
-import apiUrl from "../variables";
+import apiUrl from "../../variables";
 
 let userInfo = window.localStorage.getItem("userInfo");
+let profil = window.localStorage.getItem("profil");
 
 const userStore = {
   namespaced: true,
+  
   state: {
-    message: "lol",
     status: "",
     userInfo: userInfo ? JSON.parse(userInfo) : {},
-    c: 0,
+    profil: profil ? JSON.parse(profil) : {},
   },
 
   actions: {
@@ -61,6 +62,25 @@ const userStore = {
         });
     },
 
+    async getProfile({ commit, getters } ) {
+      await axios
+        .get(apiUrl+"/api/users/profile/", { headers: {
+          "content-type": "application/json",
+          Authorization: `Bearer ${getters.getUser.token}`,
+        },} )
+        .then((response) => {
+          let profil = response.data;
+          localStorage.setItem("profil", JSON.stringify(profil));
+          commit("set_profil", profil);
+        })
+        .catch((err) => {
+          let message = err.response.data.detail;
+          commit("auth_error", message);
+          //localStorage.removeItem("token");
+          //console.log(message);
+        });
+    },
+
     async update({getters}, values) {
       await axios
         .put(
@@ -90,7 +110,10 @@ const userStore = {
   },
 
   getters: {
-    isAuthenticated: (state) => !!state.token,
+    auth(state) {
+      return  state.userInfo
+    },
+
     authStatus: (state) => state.status,
     getUser(state){
       return state.userInfo
@@ -114,6 +137,9 @@ const userStore = {
     logout_request(state) {
       state.status = "";
       state.userInfo = "";
+    },
+    set_profil(state, data) {
+      state.profil = data;
     },
   },
 };

@@ -11,7 +11,6 @@
             aria-describedby="emailHelp"
             placeholder="Enter email"
             v-model="email"
-            
           />
         </div>
         <div class="form-group">
@@ -43,12 +42,20 @@
 </template>
 
 <script>
+
+
 export default {
   data(){
     return {
-      email : this.$store.state.userStore.userInfo.email,
-      username : this.$store.state.userStore.userInfo.username,
+      email : '',
+      username : this.$store.state.userStore.profil.username,
       password:'',
+    }
+  },
+
+  watch: {
+    email(){
+      this.email = this.$store.state.userStore.profil.email
     }
   },
 
@@ -61,7 +68,14 @@ export default {
       }
       this.$store.dispatch('userStore/update', value )
     }
-  }
+  },
+
+  mounted(){
+    this.$store.dispatch("userStore/getProfile");
+    console.log(this.$store.state.userStore.profil)
+  },
+  
+
 };
 </script>
 

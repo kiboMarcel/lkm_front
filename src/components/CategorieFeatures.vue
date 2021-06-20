@@ -1,13 +1,48 @@
 <template>
-
-  <a href="">
-    <div class="feature-background">
-      <img
-        src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCINCgkgdmlld0JveD0iMCAwIDUxMi40MzkgNTEyLjQzOSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEyLjQzOSA1MTIuNDM5OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8Zz4NCgk8Zz4NCgkJPHBhdGggZD0iTTM0NS41MTUsMTU2LjIwMWMtMC45MzctMS4wMTUtMS42NjYtMS44ODMtMi40ODItMi44MDN2LTMwLjk0NmM1Ljg0OS01MS43NzMsMjUuMzgzLTEwOS45NzYsMjUuNTgzLTExMC41NTcNCgkJCWMwLjg1OS0yLjU1MSwwLjQ4Ni01LjM0Ni0wLjk5OC03LjU4NWMtMS40OTMtMi4yMzktMy45MzEtMy42NjItNi42MTMtMy44NDRjLTM3LjQ4LTIuNjI5LTcyLjY3OCw2LjMzNS0xMDQuNzM0LDI2LjQzMw0KCQkJQzIyOC40NjYsOS40MjIsMTkzLjc4OS0yLjU1NCwxNTEuNTEsMC40NjZjLTIuNjM4LDAuMTc0LTUuMDUxLDEuNTUzLTYuNTQzLDMuNzRjLTEuNTAxLDIuMTc4LTEuOTE4LDQuOTM4LTEuMTM3LDcuNDYzDQoJCQljMC4wOTUsMC4zMyw0LjAzNSwxMy4yMzQsOC43OTEsMzIuMTYxaDE2Ljg1M2MwLjI5NSwwLDAuNTksMC4wMTcsMC44NzYsMC4wNDNDMjUxLjI0Niw1Mi4xLDI5My4xNTIsMTE0Ljc0NiwzMTUuNjcxLDE0OC40DQoJCQlsMS40MzIsMi4xMjZjLTUuNTcxLDAuODE2LTEyLjE0OSwxLjczNi0xOS4xNTIsMi42MTJjLTIxLjU4Mi0zMi4wMTMtNjAuMDQzLTg0Ljc0OS0xMjguOTItOTEuOTUyaC0xMi4yNDUNCgkJCWM2LjQ4MiwyOC4zNzcsMTIuODYxLDYzLjc3NCwxMi42NzgsOTIuMDU2Yy0wLjczOCwwLjc5LTEuMzgsMS41MjctMi4yMTMsMi40MDRjLTIxLjUzOSwyMi40NDEtNjYuMzUyLDY5LjEzNy0yMy43MzQsMzMyLjE0OQ0KCQkJYzAuNTM4LDMuMzA2LDIuOTMzLDYuMDA1LDYuMTQ0LDYuOTQyYzEuNDc1LDAuNDM0LDIyLjk3OSw2LjYxMyw0OS42MjksMTEuNTVsLTMuMTkzLTcuOTg0Yy0wLjE1Ni0wLjM5MS0wLjI3OC0wLjc5LTAuMzgyLTEuMjA2DQoJCQljLTQ0LjE1My0xODQuNjkzLTI4LjgwMi0yNjEuMzU0LDE4LjA1LTMyNi41NTJjNi41NjksMC44MDcsMTMuNDE2LDEuNTUzLDIwLjA2MywyLjE0M2MtNDguMzU0LDYyLjkxNS02NS42NCwxMzQuMy0yMS4zODMsMzE5Ljc1Nw0KCQkJbDYuODQ3LDE3LjEwNGMxMi40MDksMS43MTgsMjUuMTMxLDIuODksMzYuOTI1LDIuODljMTEuODExLDAsMjQuNTUtMS4xNzEsMzYuOTc3LTIuODk4bDYuODM4LTE3LjA5Ng0KCQkJYzQ0LjI1OC0xODUuNDM5LDI2Ljk4LTI1Ni44MzMtMjEuMzc0LTMxOS43NTdjNi42NDctMC41ODEsMTMuNDk0LTEuMzM2LDIwLjA1NS0yLjE0M2M0Ni44NjEsNjUuMTk4LDYyLjIxMiwxNDEuODUsMTguMDUsMzI2LjU1Mg0KCQkJYy0wLjA5NSwwLjQxNy0wLjIyNiwwLjgxNi0wLjM4MiwxLjIwNmwtMy4xOTMsNy45NzVjMjYuNjQxLTQuOTM4LDQ4LjExOS0xMS4xMDgsNDkuNTk1LTExLjU0Mg0KCQkJYzMuMjExLTAuOTM3LDUuNTk3LTMuNjI3LDYuMTM1LTYuOTM0QzQxMS40NDEsMjI3LjU3NywzNjYuOTE1LDE3OS4zNzEsMzQ1LjUxNSwxNTYuMjAxeiBNMzI4Ljg3OSw5OC43NzkNCgkJCWMtMC4wOTUtMC4xMzktMC4yMDgtMC4yODYtMC4zMDQtMC40MjVjLTEuMzU0LTEuODkyLTIuNzY4LTMuODQ0LTQuMjctNS44NzVjLTAuMzgyLTAuNTIxLTAuNzgxLTEuMDQxLTEuMTcyLTEuNTYyDQoJCQljLTEuMDg1LTEuNDU4LTIuMjEzLTIuOTQyLTMuMzg0LTQuNDUyYy0wLjc5LTEuMDMzLTEuNTg4LTIuMDU3LTIuNDEyLTMuMTA3Yy0wLjUyMS0wLjY1OS0xLjA3Ni0xLjMzNi0xLjYxNC0yLjAwNQ0KCQkJYy0xLjkxOC0yLjM4Ni0zLjkxNC00LjgwOC02LjAxNC03LjI3MmMtMC4wNzgtMC4wODctMC4xNTYtMC4xNzQtMC4yMjYtMC4yNjljLTEwLjMxOC0xMi4wOTctMjIuNzQ1LTI0Ljc5My0zNy41OTMtMzYuMTg3DQoJCQljMjMuNzY5LTEzLjQ3Nyw0OS4zNi0yMC4yNjMsNzYuMzMxLTIwLjI2M2gwLjQxN0MzNDMuNjQsMzMuNTksMzM0LjUxMSw2NS40ODIsMzI4Ljg3OSw5OC43Nzl6Ii8+DQoJPC9nPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo="
-      />
-    </div>
-  </a>
-  <span>Categories</span>
+  <div class="">
+    <ul>
+      <li class="cat">
+        <a href="">
+          <h4>Jeux</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>PC</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>Menage</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>Domestique</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>Autre dfd</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>Autred</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>AutChose</h4>
+        </a>
+      </li>
+      <li class="cat">
+        <a href="">
+          <h4>AuChose</h4>
+        </a>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -15,29 +50,33 @@ export default {};
 </script>
 
 <style scoped>
-.feature-background {
-  background-color: rgba(0, 255, 106, 0.863);
-  margin: 0;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.cat {
+  background-color: rgb(127, 180, 197);
+  display: inline-block;
+  padding: 15px;
+  margin: 0.5rem;
+  color: white;
+  border-radius: 12px;
+  margin-right: 10px;
+}
+a h4 {
+  margin: 2px 0;
+  font-size: 25px;
 }
 
-a img {
-  height: 40px;
-  width: 40px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+@media (max-width: 930px) {
+  ul {
+    padding: 0;
+    margin: 1rem;
+  }
+  .cat {
+    padding: 2px 8px;
+    margin: 0.2rem 0.2rem;
+  }
 
-
-span {
-  font-size: 0.7rem;
-  text-align: center;
+  a h4 {
+    margin: 2px 0;
+    font-size: 12px;
+  }
 }
 </style>

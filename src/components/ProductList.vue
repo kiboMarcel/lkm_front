@@ -26,10 +26,9 @@ export default {
   mounted() {
     this.$store.dispatch("productStore/loadProducts");
     //console.log(this.$store)
-    
   },
   computed: {
-    ...mapState('productStore', ['products']),
+    ...mapState("productStore", ["products"]),
   },
 };
 </script>
@@ -37,6 +36,6 @@ export default {
 <style scoped>
 .row {
   background-color: #f2f2f2;
-  margin: 0 0.5rem 100px 0.5rem;
+  margin: 0;
 }
 </style>

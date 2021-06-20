@@ -15,11 +15,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="item in $store.state.cartStore.cartItems" :key="item._id">
-                <td > 
+              <tr
+                v-for="item in $store.state.cartStore.cartItems"
+                :key="item._id"
+              >
+                <td>
                   <div class="thumb-cart">
-                    <img :src="imageurl + item.image" alt="">
-                  <span class="item-cart"> {{ item.name }}</span>
+                    <img :src="imageurl + item.image" alt="" />
+                    <span class="item-cart"> {{ item.name }}</span>
                   </div>
                 </td>
                 <td>
@@ -27,37 +30,43 @@
                 </td>
                 <td>
                   <div class="item-qty ">
-                    <input type="text" :value=" item.quantity " >
+                    <input type="text" :value="item.quantity" />
                   </div>
                 </td>
-                <td> {{  item.price * item.quantity}}</td>
+                <td>{{ item.price * item.quantity }}</td>
                 <td>
-                  <div class="action">
-                <a @click="removeItem(item._id)" class="search_icon"><i class="fas fa-trash"></i></a>
-              </div>
+                  <div class="delete">
+                    <a @click="removeItem(item._id)" class="search_icon"
+                      ><i class="fas fa-trash"></i
+                    ></a>
+                  </div>
                 </td>
               </tr>
             </tbody>
           </table>
         </div>
         <div class="col-md-4 col">
-          <h2> Produit({{ $store.state.cartStore.cartCount }}) </h2>
+          <h2>Produit({{ $store.state.cartStore.cartCount }})</h2>
           <div class="resume">
             <div class="total">
               <h4>Total</h4>
             </div>
             <div class="prix">
-              <h5>2500</h5>
+              <h5>{{ sum }}</h5>
             </div>
           </div>
           <div class="checkout">
-            <button class="btn"> Checkout Process</button>
+            <button
+              @click="checkout"
+              class="btn"
+              :class="!checkCartITem ? 'disabled' : ''"
+            >
+              Passer la Commande
+            </button>
           </div>
         </div>
       </div>
     </div>
-   
-    
   </div>
 </template>
 
@@ -72,45 +81,66 @@ export default {
 
   data() {
     return {
+      products: this.$store.state.cartStore.cartItems,
       imageurl: apiUrl,
-      cartItems: {
-        product_id: this.id,
-        product_name: this.name,
-        product_price: this.product_price,
-        product_quantity: 1,
-      },
     };
   },
 
   methods: {
-    removeItem(item){
-      this.$store.commit('cartStore/removeCartItem', item);
-      
-    }
-  }
-
-  /* mounted() {
-    this.$store.dispatch("LoadCart", this.$route.params.id);
-    this.cartItems = localStorage.getItem("cartItems");
-    console.log(this.cartItems);
-  }, */
-
-  /* computed: {
-    getCartItems() {
-      return this.$store.getters.loadCartItem;
+    removeItem(item) {
+      this.$store.commit("cartStore/removeCartItem", item);
     },
+    checkout() {
+      if (!this.checkCartITem) {
+        return;
+      } else {
+        this.$router.push(`/shipping/`);
+      }
+    },
+  },
+
+ /*  mounted() {
+    //this.$store.dispatch("LoadCart", this.$route.params.id);
+    //this.cartItems = localStorage.getItem("cartItems");
+    //console.log(this.cartItems);
+   
   }, */
+
+  computed: {
+    /* getCartItems() {
+      return this.$store.getters.loadCartItem;
+    }, */
+    checkCartITem() {
+      let confirm;
+      if (this.$store.state.cartStore.cartItems.length != 0) {
+        confirm = true;
+      } else {
+        confirm = false;
+      }
+      return confirm;
+    },
+
+    sum() {
+       let sum = 0;
+    for (let i in this.products) {
+      let subT =
+        parseFloat(this.products[i].price) *
+        parseFloat(this.products[i].quantity);
+      sum += subT;
+    }
+    return sum;
+    },
+  },
 };
 </script>
 
 <style scoped>
-
-.item-cart{
+.item-cart {
   display: flex;
   align-items: center;
 }
 
-.thumb-cart{
+.thumb-cart {
   display: flex;
   flex-wrap: wrap;
 }
@@ -121,11 +151,11 @@ export default {
   }
 }
 
-thead th{
+thead th {
   text-align: center;
 }
 
-td{
+td {
   vertical-align: middle;
 }
 
@@ -135,12 +165,12 @@ div h2 {
   margin: 25px 0;
 }
 
-.item-qty{
+.item-qty {
   margin: 50%;
   display: inline;
 }
 
-.item-qty input{
+.item-qty input {
   width: 30%;
   text-align: center;
 }
@@ -154,7 +184,6 @@ div h2 {
   margin-bottom: 30px;
 }
 
-
 img {
   width: 100px;
   height: 100px;
@@ -162,20 +191,22 @@ img {
   margin: 0 15px;
 }
 
-
-.action {
+.delete {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
+.delete:hover {
+  cursor: pointer;
+}
 
-.checkout{
+.checkout {
   display: flex;
   justify-content: center;
 }
 
-.checkout button{
+.checkout button {
   background-color: black;
   color: white;
   text-align: center;

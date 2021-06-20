@@ -77,6 +77,10 @@ const Products = [
         'numReviews': 12,
         'shop': 'champion',
     },
+
+
+
+    
 ]
 
 export default Products

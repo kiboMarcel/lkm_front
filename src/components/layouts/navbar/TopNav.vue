@@ -1,87 +1,51 @@
 <template>
-  <nav class="navbar navbar-dark ">
-    <div class="container-fluid">
-      <div class="logo">
-        <a class="navbar-brand" href="#">Afri-Zone</a>
-      </div>
-      <div class="search-group">
-        <input
-          class="search_input"
-          type="text"
-          name=""
-          placeholder="Search..."
-        />
-        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-      </div>
-      <div class="option">
-        <div class="cart">
-          <i class="fas fa-shopping-cart"></i>
-          <span>{{ $store.state.cartStore.cartCount }}</span>
+  <div class="main-nav">
+    <nav class="navbar navbar-dark custom">
+      <div class="container-fluid">
+        <div class="logo">
+          <img src="../../../assets/logo.png" alt="" />
+          <h4>Afri-Zone</h4>
         </div>
-       <!--  <div class="dropdown">
-          <button
-            class="btn  dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-          <i class="fas fa-user"></i>
-             <span class="caret">
-              {{
-                checkUser ?'  '+$store.state.userStore.userInfo.username : " Account"
-              }}
-            </span>
-          </button>
-          <div class="dropdown-menus" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </div> -->
-        <div class="dropdown">
-          <button class="btn  dropdown-toggle" type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown">
-            <i class="fas fa-user"></i>
-            <span class="caret">
-              {{
-                checkUser ?'  '+$store.state.userStore.userInfo.username : " Account"
-              }}
-            </span>
-          </button>
-          <ul class="dropdown-menus">
-            <div v-if="!checkUser" class="btns">
-              <button @click="loginModal" class="btn btn-primary">Login</button>
-              <button class="btn btn-primary">Sign-up</button>
+        <div class="search-group">
+          <input type="text" placeholder="search" />
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+        <div class="group-icon">
+          <ul>
+            <div class="search-icon-mob">
+              <li>
+                <a
+                  data-toggle="collapse"
+                  href="#collapse"
+                  aria-expanded="false"
+                  aria-controls="collapse"
+                  ><i class="fas fa-search"></i
+                ></a>
+              </li>
             </div>
 
-            <li><a href="#">other menu</a></li>
-            <li><a href="#">other menu</a></li>
-            <li><a href="#">other menu</a></li>
-
-             <div v-if="checkUser" >
-            <li> <router-link to="/profil"> Profil</router-link> </li>
-            <li><a @click.prevent="logout" href="" >Se deconnecter</a></li>
-          </div>
+            <li>
+              <a type="button"  ><i class="far fa-user-circle"></i></a>
+            </li>
+            
+              <li>
+                <a href="/cart"><i class="fab fa-opencart"></i>
+                <span class="countstore">{{ $store.state.cartStore.cartCount }}</span>
+                </a>
+              </li>
           </ul>
-
         </div>
       </div>
+    </nav>
+    <div class="collapse navbar-collapse search-mobile" id="collapse">
+      <input type="text" placeholder="search" />
+      <button class="btn" type="submit">Chercher</button>
     </div>
-    <base-modal @close="hideModal" v-if="loginModalIsVisible"> </base-modal>
-  </nav>
+  </div>
 </template>
 
 <script>
-import BaseModal from "../../BaseModal";
-
 export default {
-  components: {
-    BaseModal,
-  },
-
   data() {
     return {
       loginModalIsVisible: false,
@@ -95,6 +59,7 @@ export default {
     checkUser() {
       let confirm;
       if (Object.keys(this.$store.state.userStore.userInfo).length != 0) {
+        //if (this.$store.state.userStore.userInfo.length != 0) {
         confirm = true;
       } else {
         confirm = false;
@@ -122,22 +87,58 @@ export default {
 
     logout() {
       this.$store.dispatch("userStore/logout");
+      this.$router.push("/");
     },
   },
 };
 </script>
 
 <style scoped>
-.navbar {
-  background-color: #3761af;
-  color: #fff;
+.main-nav {
+  position: sticky;
+}
+
+.custom {
+  max-height: 90px;
+  color: white;
+  background-color: #212529;
 }
 
 .container-fluid {
   display: flex;
+  justify-content: space-between;
 }
 
-.search_input {
+.logo {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  max-width: 200px;
+}
+.logo img {
+  width: 45px;
+  height: 45px;
+}
+h4 {
+  color: white;
+}
+
+@media (max-width: 990px) {
+  .logo {
+    max-width: 150px;
+  }
+  .logo h4 {
+    display: none;
+  }
+}
+/* search group */
+
+.search-group {
+  display: flex; 
+  background-color: hsla(0, 0%, 100%, 0.27);
+}
+
+.search-group input {
   background: hsla(0, 0%, 100%, 0.27);
   border: 0;
   padding: 0 1rem;
@@ -148,38 +149,58 @@ export default {
   outline: none;
 }
 
+.search-group i {
+  color: rgb(114, 114, 114);
+}
+
 .search_icon {
-  width: 10px;
+  width: 0;
   float: right;
   position: relative;
-  bottom: -4px;
+  bottom: -6px;
   right: 26px;
   border-radius: 50%;
   color: white;
   text-decoration: none;
 }
 
-.option {
-  margin-right: 25px;
+@media (max-width: 930px) {
+  .search-group {
+    display: none;
+  }
+}
+/* group icon */
+.group-icon {
   display: flex;
-  justify-content: space-around;
-  flex-direction: row;
+  align-items: center;
 }
 
-.login {
-  margin: 0 1.2rem;
+.group-icon ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
 }
 
-.cart i {
-  padding: 0.5rem 0;
-}
-
-.cart span {
+.group-icon ul li {
   display: inline-block;
-  background-color: rgb(221, 41, 80);
-  min-width: 20px;
-  height: 20px;
+  margin: 12px;
+}
+
+.search-icon-mob {
+  display: none;
+}
+
+.group-icon i {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.countstore{
+   background-color: rgb(221, 41, 80);
+  min-width: 30px;
+  height: 30px;
   color: #fff;
+  padding:5px;
   border-radius: 10px;
   line-height: 22px;
   text-align: center;
@@ -187,59 +208,34 @@ export default {
   top: -13px;
   left: -1px;
 }
-
-@media screen and (max-width: 960px) {
-  .searchbar {
-    display: none;
+/* mobile search bar */
+@media (max-width: 930px) {
+  .search-icon-mob {
+    display: inline;
   }
 }
 
-.searchbar:hover > .search_input {
-  padding: 0 10px;
-  caret-color: white;
-  transition: width 0.4s linear;
-}
-
-.searchbar:hover > .search_icon {
-  color: #e74c3c;
-}
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-.dropdown-menus {
+.search-mobile {
+  background-color: #212529;
   display: none;
-  position: absolute;
-  left: -100px;
-  padding: 1px;
-  background-color: #f1f1f1;
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  flex-direction: column;
+}
+.search-mobile input {
+  background: hsla(0, 0%, 100%, 0.27);
+  border: 0;
+  padding: 0 1rem;
+  width: 95%;
+  margin: 12px auto;
+  height: 35px;
+  border-radius: 5px;
+  color: #fff;
+  outline: none;
+}
+.btn {
+  color: white;
+  background-color: rgb(57, 25, 80);
+  width: 95%;
+  margin: 12px auto;
 }
 
-.dropdown-menus {
-  list-style: none;
-}
-
-.dropdown-menus li a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-menus li a:hover {
-  background-color: rgb(224, 224, 224);
-}
-
-.dropdown:hover .dropdown-menus {
-  display: block;
-}
-
-.btns button {
-  margin: 12px;
-}
 </style>

@@ -1,7 +1,8 @@
 import Vuex from "vuex";
-import productStore from  './productStore'
-import cartStore from './cartStore';
-import userStore from './userStore';
+import productStore from  './modules/productStore'
+import cartStore from './modules/cartStore';
+import userStore from './modules/userStore';
+import orderStore from './modules/orderStore';
 
 
 
@@ -11,6 +12,7 @@ const store = new Vuex.Store({
             productStore,
             cartStore,
             userStore,
+            orderStore,
         }
     
 })

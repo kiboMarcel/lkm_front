@@ -1,5 +1,5 @@
 import axios from 'axios';
-import apiUrl from '../variables';
+import apiUrl from '../../variables';
 
 
 const productStore = {

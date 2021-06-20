@@ -1,10 +1,10 @@
 <template>
-  <form @submit.prevent="submitForm">
+  <form class="form" @submit.prevent="submitForm">
     <div
       class="alert alert-danger"
       v-if="$store.state.userStore.status == 'error'"
     >
-      {{$store.state.userStore.message}}
+      {{ $store.state.userStore.message }}
     </div>
     <div class="form-group">
       <input
@@ -68,6 +68,21 @@ export default {
 </script>
 
 <style scoped>
+.form {
+  padding: 0 10px;
+}
+
+.form-control{
+  border: 2px solid #f0f0f0;
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #777;
+    outline: 0;
+    box-shadow: none;
+}
 .btn {
   background-color: rgb(221, 41, 80);
   text-align: center;
