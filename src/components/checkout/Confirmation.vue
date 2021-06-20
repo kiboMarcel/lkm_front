@@ -37,7 +37,7 @@
       <span>{{ sum + shippingPrice + taxPrice}} CFA</span>
     </div>
     <div class="confirm-btn">
-      <button class="btn" @click="confirm" >Confirmer et Payer</button>
+      <button class="btn btn-outline-info" @click="confirm" >Confirmer et Payer</button>
     </div>
   </div>
 </template>
@@ -148,14 +148,8 @@ margin-bottom: 20px;
 }
 
 button {
-  background-color: blueviolet;
-  color: white;
   width: 100%;
 }
 
-.body button:hover{
-  background-color: rgb(106, 37, 172);
-  color:white;
-}
 
 </style>

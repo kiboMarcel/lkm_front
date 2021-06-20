@@ -24,7 +24,7 @@
         <span class="new_price">{{ product.price }} FCFA</span>
         <!-- <span class="old_price">$60.00</span> -->
       </div>
-      <ul>
+     <!--  <ul>
         <li>
           <a
             href="#0"
@@ -35,33 +35,11 @@
             ><i class="fas fa-shopping-cart"></i><span>Add to cart</span></a
           >
         </li>
-      </ul>
+      </ul> -->
     </div>
-    <!-- /grid_item -->
   </div>
 
-  <!-- <div class="card">
-      <router-link
-        :to="{ name: 'ProductDetail', params: { prodId: product._id } }"
-      >
-        <div class="img">
-          <img :src="imageurl + product.image" class="card-img-top" alt=".." />
-        </div>
-        <div class="card-body">
-          <p class="card-text">
-            <a href=""> {{ product.name }}</a>
-          </p>
-          <h4>{{ product.price }} FCFA</h4>
-          <div class="rating">
-            <rating
-              :value="product.rating"
-              :text="` ${product.numReviews} Reviews`"
-              color="#f8e825"
-            ></rating>
-          </div>
-        </div>
-      </router-link>
-    </div> -->
+ 
 </template>
 
 <script>
@@ -101,27 +79,6 @@ export default {
 .grid_item:hover ul li {
   display: block;
 }
-.grid_item figure {
-  position: relative;
-  overflow: hidden;
-  -moz-transition: all 0.7s ease;
-  -o-transition: all 0.7s ease;
-  -webkit-transition: all 0.7s ease;
-  -ms-transition: all 0.7s ease;
-  transition: all 0.7s ease;
-}
-.grid_item figure img:nth-child(1) {
-  visibility: visible;
-  opacity: 1;
-  transform: translateZ(0);
-}
-.grid_item figure img:nth-child(2) {
-  position: absolute;
-  top: 0;
-  left: 0;
-  visibility: hidden;
-  opacity: 0;
-}
 .grid_item figure:hover {
   -webkit-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
   -moz-box-shadow: 0 20px 20px -20px rgba(0, 0, 0, 0.25);
@@ -142,9 +99,20 @@ export default {
   transform: scale(1.05);
 }
 
+figure{
+  overflow: hidden;
+}
+
 .img-fluid{
   object-fit: cover;
+  transition: transform .5s ease;
 }
+
+.img-fluid:hover{
+  transform: scale(1.5);
+}
+
+
 .grid_item ul {
   margin: 0;
   padding: 0;

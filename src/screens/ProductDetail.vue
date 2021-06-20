@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-6 col-xl-6">
+      <div class="col-12 col-sm-6 col-md-6 col-xl-5">
         <div class="img-thb">
           <img :src="imageurl + product.image" alt="" class="product-img" />
         </div>
       </div>
-      <div class="col-12 col-sm-6 col-md-6 col-xl-6">
+      <div class="col-12 col-sm-6 col-md-6 col-xl-5">
         <div class="p-detail">
           <h3>{{ product.name }}</h3>
           <p> <strong>Prix: {{ product.price }}</strong></p>
@@ -59,8 +59,8 @@
             </p>
           </div>
           <div class="btn-grp">
-            <button class="btn buy" type="submit">buy</button>
-            <button class="btn add"  @click="addtoCart(product)">
+            <button class="btn btn-outline-primary" type="submit">buy</button>
+            <button class="btn btn-outline-success "  @click="addtoCart(product)">
               <i class="fab fa-opencart"></i> add to cart
             </button>
           </div>
@@ -161,6 +161,7 @@ export default {
 .img-thb img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
 }
 /*product  detail */
 
@@ -234,6 +235,11 @@ export default {
   background-color: fuchsia;
   color: white;
 }
+.add:hover {
+  background-color: rgb(173, 40, 173);
+}
+
+
 .buy {
   background-color: rgb(97, 11, 179);
   color: white;

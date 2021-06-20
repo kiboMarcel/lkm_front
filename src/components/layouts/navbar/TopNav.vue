@@ -18,7 +18,7 @@
                 <a
                   data-toggle="collapse"
                   href="#collapse"
-                  aria-expanded="false"
+                  aria-expanded="true"
                   aria-controls="collapse"
                   ><i class="fas fa-search"></i
                 ></a>
@@ -110,6 +110,10 @@ export default {
   justify-content: space-between;
 }
 
+a{
+  text-decoration: none;
+}
+
 .logo {
   display: flex;
   justify-content: left;
@@ -128,6 +132,7 @@ h4 {
   .logo {
     max-width: 150px;
   }
+
   .logo h4 {
     display: none;
   }
@@ -136,11 +141,11 @@ h4 {
 
 .search-group {
   display: flex; 
-  background-color: hsla(0, 0%, 100%, 0.27);
+  background-color: hsla(0, 7%, 13%, 0.27);
 }
 
 .search-group input {
-  background: hsla(0, 0%, 100%, 0.27);
+  background: hsla(0, 7%, 13%, 0.27);
   border: 0;
   padding: 0 1rem;
   width: 450px;
@@ -151,7 +156,7 @@ h4 {
 }
 
 .search-group i {
-  color: rgb(114, 114, 114);
+  color:#fff;
 }
 
 .search_icon {
@@ -218,15 +223,15 @@ h4 {
 
 .search-mobile {
   background-color: #212529;
-  display: none;
   flex-direction: column;
+  padding: 0  40px 0 40px;
 }
 .search-mobile input {
   background: hsla(0, 0%, 100%, 0.27);
   border: 0;
   padding: 0 1rem;
-  width: 95%;
-  margin: 12px auto;
+  width: 100%;
+  margin: 12px 0px;
   height: 35px;
   border-radius: 5px;
   color: #fff;
@@ -235,8 +240,8 @@ h4 {
 .btn {
   color: white;
   background-color: rgb(57, 25, 80);
-  width: 95%;
-  margin: 12px auto;
+  width: 100%;
+  margin: 12px 0px;
 }
 
 </style>

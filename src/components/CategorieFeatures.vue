@@ -3,7 +3,7 @@
     <ul>
       <li class="cat">
         <a href="">
-          <h4>Jeux</h4>
+          <h4>Jex</h4>
         </a>
       </li>
       <li class="cat">
@@ -53,7 +53,7 @@ export default {};
 .cat {
   background-color: rgb(127, 180, 197);
   display: inline-block;
-  padding: 15px;
+  padding: 2px 9px;
   margin: 0.5rem;
   color: white;
   border-radius: 12px;

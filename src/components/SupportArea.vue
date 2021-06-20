@@ -55,14 +55,19 @@ export default {};
 }
 
 .cat {
-  background-color: rgb(40, 36, 75);
+  background-color: #212529;
   display: inline-block;
-  padding: 15px;
-  margin: 0.5rem;
+  padding: 2px 9px;
+  margin: 0.3rem;
   color: white;
   border-radius: 12px;
   margin-right: 10px;
 }
+
+.cat:hover{
+background-color: #2a2f35;
+}
+
 a h4 {
   margin: 2px 0;
   font-size: 25px;

@@ -58,7 +58,7 @@
           <div class="checkout">
             <button
               @click="checkout"
-              class="btn"
+              class="btn btn-outline-dark"
               :class="!checkCartITem ? 'disabled' : ''"
             >
               Passer la Commande
@@ -206,11 +206,7 @@ img {
   justify-content: center;
 }
 
-.checkout button {
-  background-color: black;
-  color: white;
-  text-align: center;
-}
+
 
 /* --------------------*/
 </style>
