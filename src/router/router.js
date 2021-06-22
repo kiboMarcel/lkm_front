@@ -13,6 +13,7 @@ import Checkout from "../screens/CheckoutScreen.vue";
 import Address from "../components/checkout/Address.vue";
 import Payment from "../components/checkout/Payment.vue";
 import Confirmation from "../components/checkout/Confirmation.vue";
+import OrderDetail from "../components/OrderDetail.vue";
 import LoginScreen from "../screens/LoginScreen.vue";
 import SignUpScreen from "../screens/SignUpScreen.vue";
 import log from "../middleware/log";
@@ -55,6 +56,7 @@ const router = createRouter({
       },
     },
 
+
     {
       name: "ProductDetail",
       path: "/product/:prodId",
@@ -65,6 +67,8 @@ const router = createRouter({
       },
       props: true,
     },
+
+
     {
       name: "CartScreen",
       path: "/cart/:id?",
@@ -74,6 +78,8 @@ const router = createRouter({
         footer: Footer,
       },
     },
+
+
     {
       name: "login",
       path: "/login",
@@ -83,6 +89,8 @@ const router = createRouter({
         footer: Footer,
       },
     },
+
+
     {
       name: "sign-up",
       path: "/sign-up",
@@ -92,6 +100,8 @@ const router = createRouter({
         footer: Footer,
       },
     },
+
+
     {
       name: "pcard",
       path: "/pcard",
@@ -131,6 +141,18 @@ const router = createRouter({
         requiresAuth: true,
       },
     },
+
+    {
+      name: "OrderDetail",
+      path: "/order/:orderId",
+      components: {
+        default: OrderDetail,
+        navbar: NavBar,
+        footer: Footer,
+      },
+      props: true,
+    },
+
   ],
   scrollBehavior(_, _2, savedPosition) {
     if (savedPosition) {

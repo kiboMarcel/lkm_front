@@ -61,22 +61,33 @@
           <div class="btn-grp">
             <button class="btn btn-outline-primary" type="submit">buy</button>
             <button class="btn btn-outline-success "  @click="addtoCart(product)">
-              <i class="fab fa-opencart"></i> add to cart
+              <i class="fab fa-opencart"></i> Ajouter au panier
             </button>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="">
+      <h3> Dans la meme categorie</h3><hr>
+
+      <product-cat :category="product.category "></product-cat>
+     
+    </div>
+
   </div>
+
 </template>
 
 <script>
 import apiUrl from "../variables.js";
 import Rating from "../components/Rating.vue";
+import ProductCat from "../components/ProductCategory.vue";
 
 export default {
   components: {
     Rating,
+    ProductCat
   },
 
   props: ["prodId"],
@@ -123,11 +134,11 @@ export default {
     },
   },
 
+  
   mounted() {
     this.$store.dispatch("productStore/loadProduct", this.$route.params.prodId);
   },
 
-  created() {},
 
   computed: {
     product() {

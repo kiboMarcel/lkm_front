@@ -17,27 +17,29 @@
       <ul>
         <li class="list-item" v-for="item in cartProducts" :key="item._id">
           <em> {{ item.name }} </em>
-          <span>{{  item.price * item.quantity }} CFA</span>
+          <span>{{ item.price * item.quantity }} CFA</span>
         </li>
       </ul>
       <div class="string"></div>
       <ul>
         <li class="list-item">
           <em> Sous Total </em>
-          <span> {{sum}} CFA</span>
+          <span> {{ sum }} CFA</span>
         </li>
         <li class="list-item">
           <em> livraison </em>
-          <span> {{shippingPrice}} CFA</span>
+          <span> {{ shippingPrice }} CFA</span>
         </li>
       </ul>
     </div>
     <div class="total">
       TOTAL
-      <span>{{ sum + shippingPrice + taxPrice}} CFA</span>
+      <span>{{ sum + shippingPrice + taxPrice }} CFA</span>
     </div>
     <div class="confirm-btn">
-      <button class="btn btn-outline-info" @click="confirm" >Confirmer et Payer</button>
+      <button class="btn btn-outline-info" @click="confirm">
+        Confirmer et Payer
+      </button>
     </div>
   </div>
 </template>
@@ -47,49 +49,28 @@ export default {
   data() {
     return {
       cartProducts: this.$store.state.cartStore.cartItems,
-      cartAddress : this.$store.state.cartStore.shippingAddress,
+      cartAddress: this.$store.state.cartStore.shippingAddress,
       paymentMethod: this.$store.state.cartStore.paymentMethod,
       shippingPrice: 0,
       taxPrice: 0,
     };
   },
 
-  computed:{
-      sum() {
-       let sum = 0;
-    for (let i in this.cartProducts) {
-      let subT =
-        parseFloat(this.cartProducts[i].price) *
-        parseFloat(this.cartProducts[i].quantity);
-      sum += subT;
-    }
-    return sum;
-    },
-    order(){
-        console.log(this.$store.getters["orderStore/order"])
-      
-        return this.$store.getters["orderStore/order"];
-        
-    }
-  },
-
-  methods:{
-    confirm(){
-      let data =  {
-        orderItems: this.cartProducts,
-        shippingAddress: this.cartAddress,
-        paymentMethod: this.paymentMethod,
-        itemsPrice: this.sum,
-        shippingPrice: this.shippingPrice,
-        taxPrice: this.taxPrice,
-        totalPrice: this.sum + this.shippingPrice + this.taxPrice
+  computed: {
+    sum() {
+      let sum = 0;
+      for (let i in this.cartProducts) {
+        let subT =
+          parseFloat(this.cartProducts[i].price) *
+          parseFloat(this.cartProducts[i].quantity);
+        sum += subT;
       }
-      this.$store.dispatch('orderStore/createOrder', data)
-       this.$router.push(`/order/`+this.order._id,);
-      //this.router.push({ path: `/order/${this.order._id}` })
-      //this.router.push({ name: 'OrderDetail', params: { orderId: this.order._id  } })
-    }
-  }
+      return sum;
+    },
+    order() {
+      return this.$store.getters["orderStore/order"];
+    },
+  },
 };
 </script>
 

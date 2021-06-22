@@ -187,10 +187,10 @@ figure{
 }
 .grid_item a h3 {
   font-size: 14px;
-  font-size: 0.875rem;
+  font-size: 0.995rem;
   margin: 3px 0 0 0;
   color: #444;
-  font-weight: 500;
+  font-weight: bold;
   display: inline-block;
 }
 .grid_item a h3:hover {
@@ -230,7 +230,7 @@ figure{
   color: #004dda;
 }
 
-@-webkit-keyframes fadeIn {
+/* @-webkit-keyframes fadeIn {
   0% {
     opacity: 0;
     -webkit-transform: translateX(10px);
@@ -250,7 +250,7 @@ figure{
     -o-transform: translateX(0);
     transform: translateX(0);
   }
-}
+} */
 .new_price {
   color: #004dda;
   font-weight: 500;
