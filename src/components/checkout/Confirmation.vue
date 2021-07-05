@@ -36,6 +36,7 @@
       TOTAL
       <span>{{ sum + shippingPrice + taxPrice}} CFA</span>
     </div>
+    <h2> {{order._id}} </h2>
     <div class="confirm-btn">
       <button class="btn btn-outline-info" @click="confirm" >Confirmer et Payer</button>
     </div>
@@ -66,15 +67,16 @@ export default {
     return sum;
     },
     order(){
-        console.log(this.$store.getters["orderStore/order"])
-      
+        //console.log(this.$store.getters["orderStore/order"])
+
         return this.$store.getters["orderStore/order"];
         
     }
   },
 
   methods:{
-    confirm(){
+
+     async confirm(){
       let data =  {
         orderItems: this.cartProducts,
         shippingAddress: this.cartAddress,
@@ -84,10 +86,15 @@ export default {
         taxPrice: this.taxPrice,
         totalPrice: this.sum + this.shippingPrice + this.taxPrice
       }
-      this.$store.dispatch('orderStore/createOrder', data)
-       this.$router.push(`/order/`+this.order._id,);
+           let id = await this.$store.dispatch('orderStore/createOrder', data)
+
+          console.log(id)
+          //console.log(this.$store.state.orderStore.marcel)
+        
+        
+        this.$router.push(`/order/`+id,);
       //this.router.push({ path: `/order/${this.order._id}` })
-      //this.router.push({ name: 'OrderDetail', params: { orderId: this.order._id  } })
+     //this.router.push({ name: 'OrderDetail', params: { orderId: id  } })
     }
   }
 };

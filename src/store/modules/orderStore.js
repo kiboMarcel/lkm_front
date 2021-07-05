@@ -7,6 +7,7 @@ const orderStore = {
 
     state:{
       order : {},
+      marcel: 5,
       orderDetail: [],
       success: false,
     },
@@ -18,7 +19,7 @@ const orderStore = {
        console.log(data)
       }, */
 
-        async createOrder({rootGetters, commit}, data) {
+        async createOrder({rootGetters,getters, commit}, data) {
             await axios
               .post(
                 apiUrl+"/api/orders/add/",
@@ -44,18 +45,22 @@ const orderStore = {
                 
                 commit( 'SET_ORDER', order )
                 commit( 'SUCCESS' )
-                
-                
+          
+                //console.log("marcel  :"+state.marcel)
               })
               .catch((err) => {
                 //let message = err.response.data.detail;
                 console.log(err);
               });
              //console.log(context, values)
+
+             return getters.order._id;
           },
 
 
-          async OrderDetail({rootGetters}, id){
+          async OrderDetail({rootGetters, getters}){
+           let id = await getters.order._id
+           console.log(id)
             await axios
               .get(
                 apiUrl+"/api/orders/"+id,
@@ -82,7 +87,7 @@ const orderStore = {
     mutations: {
       SET_ORDER(state, order ){
         state.order = order
-        console.log(state.order)
+        //console.log(state.order)
       },
 
       SUCCESS(state){

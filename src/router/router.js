@@ -144,7 +144,7 @@ const router = createRouter({
 
     {
       name: "OrderDetail",
-      path: "/order/:orderId",
+      path: "/order/:orderId?",
       components: {
         default: OrderDetail,
         navbar: NavBar,

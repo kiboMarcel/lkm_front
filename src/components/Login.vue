@@ -60,8 +60,9 @@ export default {
 
       this.$store.dispatch("userStore/login", userInfo);
       this.password = "";
-
-      console.log(this.$store.state.userStore.status);
+      
+      this.$router.push('/cart')
+      
     },
   },
 };

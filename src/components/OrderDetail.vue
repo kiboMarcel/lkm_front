@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="container mt-5">
     <div class="list-group">
+      <h2>Commande N {{ order._id}} </h2>
       <h2>Adresse</h2>
       <p>
         {{ cartAddress.address }}
@@ -32,20 +33,14 @@
         </li>
       </ul>
     </div>
-    <div class="total">
-      TOTAL
-      <span>{{ sum + shippingPrice + taxPrice }} CFA</span>
-    </div>
-    <div class="confirm-btn">
-      <button class="btn btn-outline-info" @click="confirm">
-        Confirmer et Payer
-      </button>
-    </div>
+   
   </div>
 </template>
 
 <script>
 export default {
+  props: ["orderId"],
+
   data() {
     return {
       cartProducts: this.$store.state.cartStore.cartItems,
@@ -54,6 +49,11 @@ export default {
       shippingPrice: 0,
       taxPrice: 0,
     };
+  },
+
+
+  mounted(){
+    this.$store.dispatch('orderStore/OrderDetail')
   },
 
   computed: {
