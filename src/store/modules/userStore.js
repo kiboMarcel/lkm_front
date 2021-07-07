@@ -115,6 +115,7 @@ const userStore = {
     },
 
     authStatus: (state) => state.status,
+    
     getUser(state){
       return state.userInfo
    }

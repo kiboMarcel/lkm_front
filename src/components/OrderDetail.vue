@@ -1,17 +1,41 @@
 <template>
-  <div class="container mt-5">
-    <div class="list-group">
-      <h2>Commande N {{ order._id}} </h2>
-      <h2>Adresse</h2>
+  <div  v-if="orderDetail.user" class="container mt-5">
+   
+     <div class="list-group">
+      <h2>Commande N {{ orderDetail._id }}</h2>
+      <h2>Envoyer à</h2>
       <p>
-        {{ cartAddress.address }}
-        {{ cartAddress.city }}
-        {{ cartAddress.postalCode }}
+        Nom: <strong> {{ orderDetail.user.name}} </strong>
       </p>
+      <p>
+        email: <strong> {{ orderDetail.user.email }}</strong>
+      </p>
+      <p>
+        addresse:<strong> {{ orderDetail.ShippingAddress.address }}</strong>
+      </p>
+      <p>
+        ville: <strong> {{ orderDetail.ShippingAddress.city }}</strong>
+      </p>
+
+      <div v-if="orderDetail.isDelivred" class="alert-success">
+        <p>
+          <strong>{{ orderDetail.deliveredAt }}</strong>
+        </p>
+      </div>
+      <div v-else class="alert-warning">
+        <p><strong>En attente de livraison</strong></p>
+      </div>
     </div>
-    <div class="list-group">
+     <div class="list-group">
       <h2>Methode de payement</h2>
       <p>{{ paymentMethod }}</p>
+
+      <div v-if="orderDetail.ispaid" class="alert-success">
+        <p> <strong>{{ orderDetail.paidAt }}</strong> </p>
+      </div>
+      <div v-else class="alert-danger">
+        <p><strong>En attente de paiment</strong> </p>
+      </div>
     </div>
     <div class="list-group">
       <h2>Liste des produits</h2>
@@ -32,12 +56,14 @@
           <span> {{ shippingPrice }} CFA</span>
         </li>
       </ul>
-    </div>
-   
+    </div> 
+
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   props: ["orderId"],
 
@@ -46,38 +72,46 @@ export default {
       cartProducts: this.$store.state.cartStore.cartItems,
       cartAddress: this.$store.state.cartStore.shippingAddress,
       paymentMethod: this.$store.state.cartStore.paymentMethod,
+      orderd: this.$store.state.orderStore, 
       shippingPrice: 0,
       taxPrice: 0,
     };
   },
 
-
-  mounted(){
-    this.$store.dispatch('orderStore/OrderDetail')
+  mounted() {
+    console.log(this.orderId)
+    this.$store.dispatch("orderStore/OrderDetail", this.orderId);
   },
 
   computed: {
-    sum() {
-      let sum = 0;
-      for (let i in this.cartProducts) {
-        let subT =
-          parseFloat(this.cartProducts[i].price) *
-          parseFloat(this.cartProducts[i].quantity);
-        sum += subT;
-      }
-      return sum;
+     sum() {
+       let sum = 0;
+    for (let i in this.cartProducts) {
+      let subT =
+        parseFloat(this.cartProducts[i].price) *
+        parseFloat(this.cartProducts[i].quantity);
+      sum += subT;
+    }
+    return sum;
     },
-    order() {
-      return this.$store.getters["orderStore/order"];
-    },
+    ...mapState("orderStore", ["orderDetail"]),
   },
 };
 </script>
 
 <style scoped>
+.container {
+  width: 75%;
+}
+
 .list-group {
   border-bottom: 1px solid #c0bfbf;
   margin-bottom: 12px;
+}
+
+p {
+  margin: 0;
+  padding: 6px 0;
 }
 
 ul {
@@ -132,13 +166,11 @@ span {
   margin-bottom: 15px;
 }
 
-.confirm-btn{
-margin-bottom: 20px;
+.confirm-btn {
+  margin-bottom: 20px;
 }
 
 button {
   width: 100%;
 }
-
-
 </style>

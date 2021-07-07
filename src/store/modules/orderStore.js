@@ -7,7 +7,8 @@ const orderStore = {
 
     state:{
       order : {},
-      orderDetail: [],
+      marcel: 45,
+      orderDetail: {},
       success: false,
     },
 
@@ -18,7 +19,7 @@ const orderStore = {
        console.log(data)
       }, */
 
-        async createOrder({rootGetters,getters, commit}, data) {
+        async createOrder({rootGetters, getters, commit}, data) {
             await axios
               .post(
                 apiUrl+"/api/orders/add/",
@@ -57,14 +58,12 @@ const orderStore = {
           },
 
 
-          async OrderDetail({rootGetters, getters}){
-           let id = await getters.order._id
-           console.log(id)
+          async OrderDetail({rootGetters, commit}, id){
+           //let id = await getters.order._id
             await axios
               .get(
                 apiUrl+"/api/orders/"+id,
 
-               
                 {
                   headers: {
                     "content-type": "application/json",
@@ -73,7 +72,11 @@ const orderStore = {
                 }
               )
               .then((response) => {
-                console.log(response.data);
+                let order_det = response.data
+                commit('SET_ORDER_DETAIL', order_det)
+
+                //console.log(order_det.user.name)
+                
                 
               })
               .catch((err) => {
@@ -89,6 +92,10 @@ const orderStore = {
         //console.log(state.order)
       },
 
+      SET_ORDER_DETAIL(state, orderdetail ){
+        state.orderDetail = orderdetail
+      },
+
       SUCCESS(state){
         state.success = true;
       }
@@ -97,7 +104,13 @@ const orderStore = {
     getters : {
       order(state){
         return state.order;
-      }
+      },
+
+      orderG(state){
+        return state.orderDetail;
+      },
+
+     
     }
 }
 
