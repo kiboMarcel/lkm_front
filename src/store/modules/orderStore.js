@@ -7,7 +7,6 @@ const orderStore = {
 
     state:{
       order : {},
-      marcel: 5,
       orderDetail: [],
       success: false,
     },
